@@ -1,56 +1,111 @@
+# Appwrite Web SDK
 
+![License](https://img.shields.io/github/license/appwrite/sdk-for-web.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-1.5.7-blue.svg?style=flat-square)
+[![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
+[![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
+[![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
+**This SDK is compatible with Appwrite server version 1.5.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-web/releases).**
 
-# Hostel Management System
+Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Web SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
-This project is a Hostel Management System implemented using HTML, CSS, and JavaScript. The system is designed to help manage the day-to-day operations of a hostel, including room allocation, student information management, and fee tracking.
-
-## Features
-
-- **Room Allocation**: Allows admins to allocate rooms to students efficiently.
-- **Student Information**: Maintains detailed records of students, including personal information and room details.
-- **Fee Management**: Tracks fee payments and outstanding dues for each student.
-- **Responsive Design**: Ensures a user-friendly interface across different devices.
-
-## How to Use
-
-1. **Start the Application**: Load the web page to access the hostel management system.
-2. **Admin Login**: Use the admin login to access management features.
-3. **Manage Rooms**: Allocate or deallocate rooms to students as needed.
-4. **Manage Students**: Add, edit, or remove student information.
-5. **Track Fees**: Record fee payments and track outstanding dues.
-
-## Technologies Used
-
-- **HTML**: For structuring the web pages.
-- **CSS**: For styling the user interface.
-- **JavaScript**: For implementing the functionality and interactivity.
+![Appwrite](https://github.com/appwrite/appwrite/raw/main/public/images/github.png)
 
 ## Installation
 
-To run the Hostel Management System locally, follow these steps:
+### NPM
 
-1. **Clone the Repository**:
-    ```sh
-    git clone https://github.com/DebeshMondal/HOSTEL-MANAGMENT.git
-    ```
-2. **Navigate to the Project Directory**:
-    ```sh
-    cd HOSTEL-MANAGMENT
-    ```
-3. **Open the Index File**:
-    Open `index.html` in your web browser to start using the system.
+To install via [NPM](https://www.npmjs.com/):
 
-## Contributing
+```bash
+npm install appwrite --save
+```
 
-Contributions are welcome! If you have any suggestions, feel free to create a pull request or open an issue to discuss what you would like to change.
+If you're using a bundler (like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/)), you can import the Appwrite module when you need it:
+
+```js
+import { Client, Account } from "appwrite";
+```
+
+### CDN
+
+To install with a CDN (content delivery network) add the following scripts to the bottom of your <body> tag, but before you use any Appwrite services:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/appwrite@15.0.0"></script>
+```
+
+
+## Getting Started
+
+### Add your Web Platform
+For you to init your SDK and interact with Appwrite services you need to add a web platform to your project. To add a new platform, go to your Appwrite console, choose the project you created in the step before and click the 'Add Platform' button.
+
+From the options, choose to add a **Web** platform and add your client app hostname. By adding your hostname to your project platform you are allowing cross-domain communication between your project and the Appwrite API.
+
+### Init your SDK
+Initialize your SDK with your Appwrite server API endpoint and project ID which can be found in your project settings page.
+
+```js
+// Init your Web SDK
+const client = new Client();
+
+client
+    .setEndpoint('http://localhost/v1') // Your Appwrite Endpoint
+    .setProject('455x34dfkj') // Your project ID
+;
+```
+
+### Make Your First Request
+Once your SDK object is set, access any of the Appwrite services and choose any request to send. Full documentation for any service method you would like to use can be found in your SDK documentation or in the [API References](https://appwrite.io/docs) section.
+
+```js
+const account = new Account(client);
+
+// Register User
+account.create(ID.unique(), "email@example.com", "password", "Walter O'Brien")
+    .then(function (response) {
+        console.log(response);
+    }, function (error) {
+        console.log(error);
+    });
+
+```
+
+### Full Example
+```js
+// Init your Web SDK
+const client = new Client();
+
+client
+    .setEndpoint('http://localhost/v1') // Your Appwrite Endpoint
+    .setProject('455x34dfkj')
+;
+
+const account = new Account(client);
+
+// Register User
+account.create(ID.unique(), "email@example.com", "password", "Walter O'Brien")
+    .then(function (response) {
+        console.log(response);
+    }, function (error) {
+        console.log(error);
+    });
+```
+
+### Learn more
+You can use the following resources to learn more and get help
+- 🚀 [Getting Started Tutorial](https://appwrite.io/docs/getting-started-for-web)
+- 📜 [Appwrite Docs](https://appwrite.io/docs)
+- 💬 [Discord Community](https://appwrite.io/discord)
+- 🚂 [Appwrite Web Playground](https://github.com/appwrite/playground-for-web)
+
+
+## Contribution
+
+This library is auto-generated by Appwrite custom [SDK Generator](https://github.com/appwrite/sdk-generator). To learn more about how you can help us improve this SDK, please check the [contribution guide](https://github.com/appwrite/sdk-generator/blob/master/CONTRIBUTING.md) before sending a pull-request.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-
-For any inquiries or feedback, please contact [Debesh Mondal](https://github.com/DebeshMondal).
-
----
+Please see the [BSD-3-Clause license](https://raw.githubusercontent.com/appwrite/appwrite/master/LICENSE) file for more information.
